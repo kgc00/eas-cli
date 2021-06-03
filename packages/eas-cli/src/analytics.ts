@@ -70,6 +70,9 @@ export async function flushAsync(): Promise<void> {
 
 export function logEvent(name: string, properties: Record<string, any> = {}) {
   if (client) {
+    console.log('logging ' + name);
+    console.log(properties);
+
     ensureUserIdentified();
     const { userId, deviceId } = identifyData ?? {};
     client.logEvent({

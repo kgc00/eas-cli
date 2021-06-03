@@ -3,4 +3,12 @@
 require('@oclif/command')
   .run()
   .then(require('@oclif/command/flush'))
-  .catch(require('@oclif/errors/handle'));
+  .catch(error => {
+    const oclifHandler = require('@oclif/errors/handle');
+    try {
+      require('../build/analytics').flushAsync(); // must be here
+      console.log('flushing');
+    } finally {
+      return oclifHandler(error);
+    }
+  });

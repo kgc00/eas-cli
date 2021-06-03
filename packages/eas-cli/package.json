@@ -161,6 +161,10 @@
           }
         }
       }
+    },
+    "hooks": {
+      "prerun": "./build/hooks/prerun/getCredentialsAndTrack",
+      "postrun": "./build/hooks/postrun/flushAnalytics"
     }
   },
   "repository": "expo/eas-cli",

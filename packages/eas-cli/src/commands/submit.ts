@@ -1,7 +1,6 @@
 import { getConfig } from '@expo/config';
-import { flags } from '@oclif/command';
+import Command, { flags } from '@oclif/command';
 
-import AuthenticatedCommand from '../abstractCommands/authenticatedCommand';
 import { AppPlatform } from '../graphql/generated';
 import { learnMore } from '../log';
 import { isEasEnabledForProjectAsync, warnEasUnavailable } from '../project/isEasEnabledForProject';
@@ -15,10 +14,11 @@ const COMMON_FLAGS = '';
 const ANDROID_FLAGS = 'Android specific options';
 const IOS_FLAGS = 'iOS specific options';
 
-export default class BuildSubmit extends AuthenticatedCommand {
+export default class BuildSubmit extends Command {
   static description = 'Submits build artifact to app store';
   static usage = 'submit --platform=(android|ios)';
   static aliases = ['build:submit'];
+  static requiresLogin = true;
 
   static examples = [
     `$ eas submit --platform=ios
